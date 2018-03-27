@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="fb_blue">#3b5998</color>
+    <color name="google_red">#db3236</color>
+    <color name="dark_red">#89181a</color>
+    <color name="twitter_blue">#00aced</color>
+    <color name="grey_001">#9A989A</color>
+    <color name="dark_grey_001">#343234</color>
+    <color name="dark_grey_002">#656365</color>
+    <color name="blue_001">#0098CB</color>
+    <color name="flash_sale_bg_color">#262626</color>
+    <color name="flash_sale_countdown_color">#FFC000</color>
+    <color name="mall_parking_bg_color">#262626</color>
+    <color name="emas">#a38a08</color>
+    <color name="color_buttondetail">#2c395d</color>
+    <color name="abu">#e9e9ea</color>
+    <color name="diparkir">#dddddd</color>
+    <color name="booked">#c34d88</color>
+    <color name="reserved">#9d2285</color>
+    <color name="parkir_mall">#e4e4e4</color>
+    <color name="time_color">#FE0D86</color>
+    <color name="view">#DEDEDE</color>
+
+    <!--Darker Color Effect-->
+    <color name="color_transparan">#00000000</color>
+    <color name="color_darker_10">#1A000000</color>
+    <color name="color_darker_20">#33000000</color>
+    <color name="color_darker_30">#4D000000</color>
+    <color name="color_darker_40">#66000000</color>
+    <color name="color_darker_50">#80000000</color>
+
+
+    <color name="color_enable">#040404</color>
+    <color name="color_disable">#A0A0A0</color>
+
+    <color name="color_user_id">#CBC728</color>
+    <color name="color_notif">#BF008B</color>
+    <color name="color_header">#323232</color>
+    <color name="color_progressed">#FE0000</color>
+    <color name="color_unprogressed">#78CCD4</color>
+    <color name="color_text_floor">#0F3747</color>
+    <color name="color_red">#F90101</color>
+
+</resources>

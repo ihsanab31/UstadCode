@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+
+    tools:context="com.sundevs.ihsan.ustadapp.view.activity.ProfileAkunActivity">
+    <include layout="@layout/header_app"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/text10dp">
+
+    <ImageView
+        android:id="@+id/foto_user"
+        android:layout_width="@dimen/dimen150dp"
+        android:layout_height="@dimen/dimen150dp"
+        android:layout_gravity="center"
+        android:src="@drawable/muslim"
+        android:layout_marginBottom="@dimen/dimen10dp" />
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:orientation="vertical">
+
+                <com.sundevs.ihsan.ustadapp.util.font.FontLatoSemiBold
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen5dp"
+                    android:text="@string/nama_lengkap" />
+
+                <com.sundevs.ihsan.ustadapp.util.font.FontLatoSemiBold
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen5dp"
+                    android:text="@string/no_hp" />
+
+                <com.sundevs.ihsan.ustadapp.util.font.FontLatoSemiBold
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen5dp"
+                    android:text="@string/tanggal_lahir" />
+
+                <com.sundevs.ihsan.ustadapp.util.font.FontLatoSemiBold
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen5dp"
+                    android:text="@string/jurusan" />
+
+                <com.sundevs.ihsan.ustadapp.util.font.FontLatoSemiBold
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen5dp"
+                    android:text="@string/universitas" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="7"
+                android:orientation="vertical">
+
+                <com.sundevs.ihsan.ustadapp.util.font.FontLatoSemiBold
+                    android:id="@+id/nama_akun"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen5dp"
+                    android:text="@string/default_name" />
+
+                <com.sundevs.ihsan.ustadapp.util.font.FontLatoSemiBold
+                    android:id="@+id/nohp_akun"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen5dp"
+                    android:text="@string/default_nohp" />
+
+                <com.sundevs.ihsan.ustadapp.util.font.FontLatoSemiBold
+                    android:id="@+id/tgllahir_akun"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen5dp"
+                    android:text="@string/default_ttl" />
+
+                <com.sundevs.ihsan.ustadapp.util.font.FontLatoSemiBold
+                    android:id="@+id/jurusan_akun"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen5dp"
+                    android:text="@string/default_jurusan" />
+
+                <com.sundevs.ihsan.ustadapp.util.font.FontLatoSemiBold
+                    android:id="@+id/univ_akun"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen5dp"
+                    android:text="@string/default_univ" />
+            </LinearLayout>
+        </LinearLayout>
+         <Button
+             android:id="@+id/btn_kembali_akun"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:text="@string/kembali"
+             android:textAllCaps="false"
+             android:layout_marginTop="@dimen/dimen10dp"/>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+</LinearLayout>
+</LinearLayout>
