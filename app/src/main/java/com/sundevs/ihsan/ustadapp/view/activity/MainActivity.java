@@ -1,7 +1,9 @@
 package com.sundevs.ihsan.ustadapp.view.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.sundevs.ihsan.ustadapp.R;
 import com.sundevs.ihsan.ustadapp.util.pref.SessionManager;
@@ -11,7 +13,7 @@ import butterknife.OnClick;
 
 public class MainActivity extends NormalActivity {
     SessionManager session;
-
+    SharedPreferences preference;
     @Override
     protected int getActivityView() {
         return R.layout.activity_main;
@@ -20,10 +22,7 @@ public class MainActivity extends NormalActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        session = new SessionManager(getApplicationContext());
-        if (!session.isLoggedIn()) {
-            logoutUser();
-        }
+        initData();
     }
     @OnClick(R.id.iv_menu)
     void kembali (){
@@ -72,6 +71,24 @@ public class MainActivity extends NormalActivity {
     void keluar() {
         finish();
         System.exit(0);
+    }
+    public void initData() {
+        String username;
+        session = new SessionManager(getApplicationContext());
+        if (!session.isLoggedIn()) {
+            logoutUser();
+        }
+        preference = getApplicationContext().getSharedPreferences("BelajarPref", 0);
+        username = preference.getString("username", null);
+        session = new SessionManager(getApplicationContext());
+        if (session.isLoggedIn()) {
+            if (username.equals("mizwar")) {
+                Intent intent = new Intent(getApplicationContext(), MenuAdminActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+            }
+        }
+
     }
 
 }

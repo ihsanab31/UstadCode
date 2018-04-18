@@ -59,4 +59,10 @@
     <string name="API_KEY">AIzaSyB0CthD5EGZxQPjZeILxurc1JyH0tuyTCA</string>
     <string name="search_here">Search here</string>
     <string name="whatsapp">WhatsApp</string>
+    <string name="input_ustad">Input Ustad</string>
+    <string name="edit_ustad">Edit Ustad</string>
+    <string name="harga">Harga</string>
+    <string name="bidang">Bidang</string>
+    <string name="alamat">Alamat</string>
+    <string name="email">Email</string>
 </resources>

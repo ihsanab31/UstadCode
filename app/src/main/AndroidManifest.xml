@@ -41,7 +41,7 @@
             android:name=".view.activity.LoginActivity"
             android:label="@string/app_name"
             android:noHistory="true"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".view.activity.RegisterActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -50,11 +50,13 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".view.activity.ListUstadActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".view.activity.ProfileAkunActivity" />
         <activity android:name=".view.activity.AboutActivity" />
-        <activity android:name=".view.activity.MapsActivity"/>
+        <activity android:name=".view.activity.MapsActivity" />
+        <activity android:name=".view.activity.MenuAdminActivity" />
+        <activity android:name=".view.activity.InputUstadActivity" />
+        <activity android:name=".view.activity.ListEditActivity"/>
     </application>
 
 </manifest>

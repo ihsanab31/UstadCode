@@ -56,7 +56,6 @@ public class RegisterActivity extends NormalActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ButterKnife.bind(this);
 
     }
 

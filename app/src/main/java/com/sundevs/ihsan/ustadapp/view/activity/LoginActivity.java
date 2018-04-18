@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
@@ -61,6 +62,7 @@ public class LoginActivity extends NormalActivity {
     SharedPreferences preference;
     SessionManager session;
     private static final String TAG = LoginActivity.class.getSimpleName();
+
     @Override
     protected int getActivityView() {
         return R.layout.activity_login;
@@ -69,13 +71,8 @@ public class LoginActivity extends NormalActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ButterKnife.bind(this);
-        session = new SessionManager(getApplicationContext());
-        if (session.isLoggedIn()) {
-            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
-        }
+        initData();
+
     }
 
     @OnClick(R.id.register)
@@ -134,7 +131,7 @@ public class LoginActivity extends NormalActivity {
 
     private boolean isEmailValid(String email) {
         //TODO: Replace this with your own logic
-        return email.length() > 6;
+        return email.length() > 5;
     }
 
     private boolean isPasswordValid(String password) {
@@ -176,7 +173,7 @@ public class LoginActivity extends NormalActivity {
     }
 
     private void login(final String username, final String password_login) {
-     showProgress(true);
+        showProgress(true);
         StringRequest strReq = new StringRequest(Request.Method.POST, URL.URL_LOGIN, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -210,11 +207,10 @@ public class LoginActivity extends NormalActivity {
                         editor.commit();
                         showProgress(false);
                         session.createLoginSession(username, password_login);
-                       startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
                     } else {
-                        Snackbar snacka = Snackbar.make(coordinatorLayout, jObj.getString(Params.TAG_MESSAGE), Snackbar.LENGTH_LONG);
-                        snacka.show();
-                        showProgress(false);
+                        loginadmin(username, password_login);
+
                     }
                 } catch (JSONException e) {
                     // JSON error
@@ -277,5 +273,101 @@ public class LoginActivity extends NormalActivity {
     protected void onResume() {
         super.onResume();
     }
+
+    private void loginadmin(final String username, final String password_login) {
+        showProgress(true);
+        StringRequest strReq = new StringRequest(Request.Method.POST, URL.URL_LOGIN_ADMIN, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.d(TAG, "Response: " + response.toString());
+                try {
+                    JSONObject jObj = new JSONObject(response);
+                    Params.success = jObj.getInt(Params.TAG_SUCCESS);
+
+                    if (Params.success == 1) {
+                        Log.d("get edit data", jObj.toString());
+                        session.createLoginSession(username, password_login);
+                        startActivity(new Intent(getApplicationContext(), MenuAdminActivity.class));
+                    } else {
+                        Snackbar snacka = Snackbar.make(coordinatorLayout, jObj.getString(Params.TAG_MESSAGE), Snackbar.LENGTH_LONG);
+                        snacka.show();
+                        showProgress(false);
+                    }
+                } catch (JSONException e) {
+                    // JSON error
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                if (volleyError instanceof NetworkError) {
+                    Snackbar snacka = Snackbar.make(coordinatorLayout, R.string.networkerror, Snackbar.LENGTH_LONG);
+                    snacka.show();
+                    showProgress(false);
+                } else if (volleyError instanceof ServerError) {
+                    Snackbar snackb = Snackbar.make(coordinatorLayout, R.string.ServerError, Snackbar.LENGTH_LONG);
+                    snackb.show();
+                    showProgress(false);
+                } else if (volleyError instanceof AuthFailureError) {
+                    Snackbar snackc = Snackbar.make(coordinatorLayout, R.string.AuthFailureError, Snackbar.LENGTH_LONG);
+                    snackc.show();
+                    showProgress(false);
+                } else if (volleyError instanceof ParseError) {
+                    Snackbar snackd = Snackbar.make(coordinatorLayout, R.string.ParseError, Snackbar.LENGTH_LONG);
+                    snackd.show();
+                    showProgress(false);
+                } else if (volleyError instanceof NoConnectionError) {
+                    Snackbar snacke = Snackbar.make(coordinatorLayout, R.string.NoConnectionError, Snackbar.LENGTH_LONG);
+                    snacke.show();
+                    showProgress(false);
+                } else if (volleyError instanceof TimeoutError) {
+                    Snackbar snackf = Snackbar.make(coordinatorLayout, R.string.TimeoutError, Snackbar.LENGTH_LONG);
+                    snackf.show();
+                    showProgress(false);
+                }
+                showProgress(false);
+            }
+        }) {
+
+            @Override
+            protected Map<String, String> getParams() {
+                // Posting parameters ke post url
+                Map<String, String> params = new HashMap<String, String>();
+                params.put(Params.username, username);
+                params.put(Params.password, password_login);
+                return params;
+            }
+
+        };
+        strReq.setRetryPolicy(new DefaultRetryPolicy(
+                120000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+        App.getInstance().addToRequestQueue(strReq, Params.tag_json_obj);
+    }
+
+    public void initData() {
+        String username;
+        preference = getApplicationContext().getSharedPreferences("BelajarPref", 0);
+        username = preference.getString("username", null);
+        session = new SessionManager(getApplicationContext());
+        if (session.isLoggedIn()) {
+            if (username.equals("mizwar")) {
+                Intent intent = new Intent(getApplicationContext(), MenuAdminActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+            } else {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+            }
+        }
+
+    }
+
 }
 
